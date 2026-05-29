@@ -49,7 +49,7 @@ async function askSpirits() {
         body: JSON.stringify({
 
           model:
-          "deepseek/deepseek-chat-v3-0324:free",
+         "openrouter/free",
           messages: [
 
             {
