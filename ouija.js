@@ -49,7 +49,7 @@ async function askSpirits() {
         body: JSON.stringify({
 
           model:
-          "meta-llama/llama-3-8b-instruct:free",
+          "google/gemma-2-9b-it:free",
 
           messages: [
 
@@ -58,9 +58,8 @@ async function askSpirits() {
               "system",
 
               content:
-              "Kamu adalah roh mistis papan Ouija. " +
-              "Jawab singkat, gelap, misterius, " +
-              "dan seperti arwah kuno.",
+              "Kamu adalah roh papan Ouija " +
+              "yang misterius dan gelap.",
             },
 
             {
@@ -89,34 +88,22 @@ async function askSpirits() {
     if (data.error) {
 
       responseArea.innerHTML =
-      "ERROR: " +
       data.error.message;
-
-      return;
-    }
-
-    if (
-      !data.choices ||
-      !data.choices[0]
-    ) {
-
-      responseArea.innerHTML =
-      "RESPON AI KOSONG";
 
       return;
     }
 
     responseArea.innerHTML =
     data
-      .choices[0]
-      .message
-      .content;
+    .choices[0]
+    .message
+    .content;
 
   } catch (err) {
 
     console.log(err);
 
     responseArea.innerHTML =
-    "KONEKSI GAGAL";
+    err.message;
   }
 }
