@@ -49,7 +49,7 @@ async function askSpirits() {
         body: JSON.stringify({
 
           model:
-          "qwen/qwen3-32b:free",
+          "google/gemma-2-9b-it:free",
           messages: [
 
             {
