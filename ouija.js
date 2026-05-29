@@ -49,7 +49,7 @@ async function askSpirits() {
         body: JSON.stringify({
 
           model:
-          "google/gemma-2-9b-it:free",
+          "deepseek/deepseek-chat-v3-0324:free",
           messages: [
 
             {
