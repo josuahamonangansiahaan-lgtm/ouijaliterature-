@@ -13,11 +13,13 @@ async function askSpirits() {
     "response-area"
   );
 
-  if (!input.trim()) return;
+  if (!input.trim()) {
+    return;
+  }
 
   responseArea.innerHTML =
   "<span class='loading'>" +
-  "Roh sedang mengetik..." +
+  "ROH SEDANG MENGETIK..." +
   "</span>";
 
   try {
@@ -26,11 +28,19 @@ async function askSpirits() {
     await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
       {
+
         method: "POST",
 
         headers: {
-          Authorization:
+
+          "Authorization":
           `Bearer ${API_KEY}`,
+
+          "HTTP-Referer":
+          window.location.href,
+
+          "X-Title":
+          "Ouija AI",
 
           "Content-Type":
           "application/json",
@@ -39,18 +49,18 @@ async function askSpirits() {
         body: JSON.stringify({
 
           model:
-          "mistralai/" +
-          "mistral-7b-" +
-          "instruct:free",
+          "mistralai/mistral-7b-instruct:free",
 
           messages: [
+
             {
               role:
               "system",
 
               content:
-              "Kamu roh Ouija " +
-              "misterius.",
+              "Kamu adalah roh mistis papan Ouija. " +
+              "Jawab singkat, menyeramkan, " +
+              "misterius, dan seperti roh kuno.",
             },
 
             {
@@ -61,12 +71,40 @@ async function askSpirits() {
               input,
             },
           ],
+
+          temperature:
+          0.9,
+
+          max_tokens:
+          100,
         }),
       },
     );
 
     const data =
     await response.json();
+
+    console.log(data);
+
+    if (data.error) {
+
+      responseArea.innerHTML =
+      "ERROR: " +
+      data.error.message;
+
+      return;
+    }
+
+    if (
+      !data.choices ||
+      !data.choices[0]
+    ) {
+
+      responseArea.innerHTML =
+      "RESPON AI KOSONG";
+
+      return;
+    }
 
     responseArea.innerHTML =
     data
@@ -76,7 +114,9 @@ async function askSpirits() {
 
   } catch (err) {
 
+    console.log(err);
+
     responseArea.innerHTML =
-    "Koneksi gagal";
+    "KONEKSI GAGAL";
   }
 }
