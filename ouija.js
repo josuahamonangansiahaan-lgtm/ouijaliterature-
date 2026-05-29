@@ -1,5 +1,5 @@
 const API_KEY =
-"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";
+"";
 
 async function askSpirits() {
 
