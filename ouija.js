@@ -36,20 +36,20 @@ async function askSpirits() {
           "Authorization":
           `Bearer ${API_KEY}`,
 
+          "Content-Type":
+          "application/json",
+
           "HTTP-Referer":
-          window.location.href,
+          "https://josuahamonangansiahaan-lgtm.github.io",
 
           "X-Title":
           "Ouija AI",
-
-          "Content-Type":
-          "application/json",
         },
 
         body: JSON.stringify({
 
           model:
-          "mistralai/mistral-7b-instruct:free",
+          "meta-llama/llama-3-8b-instruct:free",
 
           messages: [
 
@@ -59,8 +59,8 @@ async function askSpirits() {
 
               content:
               "Kamu adalah roh mistis papan Ouija. " +
-              "Jawab singkat, menyeramkan, " +
-              "misterius, dan seperti roh kuno.",
+              "Jawab singkat, gelap, misterius, " +
+              "dan seperti arwah kuno.",
             },
 
             {
